@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgba(217, 219, 213, 255);
+}
+
+.green_layer {
+    height: 20%;
+    background-color: rgba(0, 151, 137, 255);
+}
+
+.app_box {
+    height: 800px;
+    background-color: white;
+}
+
+header img {
+    height: 30px;
+    width: 30px;
+}
