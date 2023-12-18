@@ -47,24 +47,83 @@ img {
 .left_panel {
     background-color: white;
     padding: 0;
+    border: solid 1px lightgray;
 }
 
 .right_panel {
-    background-color: blue;
+    background-color: white;
     height: 80vh;
     padding: 0;
+    border: solid 1px lightgray;
+    border-left: none;
 }
 
 .profile_panel {
+    height: 15%;
     background-color: #eaeaea;
     width: 100%;
 }
 
+.user_chat {
+    background-color: white;
+    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+}
+
 .notification_panel {
+    height: 15%;
     background-color: #8edbfd;
 }
 
 .bell_rounded {
     border-radius: 50%;
     background-color: white;
+}
+
+a {
+    color: grey;
+}
+
+.srcbar_panel {
+    height: 13%;
+    padding: 0;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.btnsrc {
+    background-color: white;
+    border-right: none;
+    border-top: solid 1px lightgray;
+    border-left: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+    border-radius: 5%;
+}
+
+.srcbar {
+    border: solid 1px lightgray;
+    border-radius: 5%;
+}
+
+
+
+.grey_text {
+    font-size: 13px;
+}
+
+.chat_box {
+    height: 85%;
+    background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
+    background-size: cover;
+}
+
+.sent_messages {
+    background-color: #d5f8bb;
+}
+
+.received_messages {
+    background-color: white;
+    border-radius: 3%;
 }
