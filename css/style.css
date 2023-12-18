@@ -1,23 +1,70 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    margin: 0 auto;
 }
 
-body {
-    background-color: rgba(217, 219, 213, 255);
+:root {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.green_layer {
+#wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* sfondo regole */
+.topGreen {
+    width: 100%;
     height: 20%;
-    background-color: rgba(0, 151, 137, 255);
+    background-color: #037166;
 }
 
-.app_box {
-    height: 800px;
+.grey {
+    width: 100%;
+    height: 80%;
+    background-color: #dadbd4;
+}
+
+/*Container App*/
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #b1b1b1;
+    align-self: center;
+}
+
+.left_panel {
     background-color: white;
+    padding: 0;
 }
 
-header img {
-    height: 30px;
-    width: 30px;
+.right_panel {
+    background-color: blue;
+    height: 80vh;
+    padding: 0;
+}
+
+.profile_panel {
+    background-color: #eaeaea;
+    width: 100%;
+}
+
+.notification_panel {
+    background-color: #8edbfd;
+}
+
+.bell_rounded {
+    border-radius: 50%;
+    background-color: white;
 }
