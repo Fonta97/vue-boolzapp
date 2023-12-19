@@ -64,6 +64,10 @@ img {
     width: 100%;
 }
 
+.contact_name {
+    font-size: 14px;
+}
+
 .user_chat {
     background-color: white;
     border-top: solid 1px lightgray;

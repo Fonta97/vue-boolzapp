@@ -52,9 +52,6 @@
                     </div>
 
                     <!-- sezione della searchbar -->
-
-
-
                     <div class="srcbar_panel d-flex justify-content-center bg-light">
                         <nav class="navbar col p-2 navbar-light bg-light">
                             <form class="d-flex col-10">
@@ -68,10 +65,10 @@
 
                     <!-- contatti con v-for  -->
 
-                    <div v-for="(contact,i) in filteredContacts" :key="i"
+                    <div v-for="(contact,i) in filteredContacts" :key="i" @click="selectContact(contact)"
                         class="user_chat d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center col-10">
-                            <div class="col-2">
+                            <div class="col-2 m-2">
                                 <img class="m-2" :src="contact.avatar" alt="propic">
                             </div>
                             <span class="col m-2">
@@ -93,11 +90,11 @@
                     <!-- pannello destinatario info -->
                     <div class="panel d-flex justify-content-between align-items-center">
                         <div class="user d-flex align-items-center col-3">
-                            <div class="col-3">
-                                <img class="m-2" src="img/avatar_2.jpg" alt="propic">
+                            <div class="col-5">
+                                <img class="m-2" :src="activeContact.avatar" alt="propic">
                             </div>
-                            <span class="col-6">
-                                nome contatto
+                            <span class="col-7 contact_name">
+                                {{ activeContact.name }}
                                 <div class="col">
                                     <div class="grey_text">last seen</div>
                                 </div>
@@ -112,15 +109,18 @@
                         </div>
                     </div>
 
-                    <!-- chatbox con messaggi  -->
+                    <!-- chatbox con messaggi e debug -->
                     <div class="chat_box p-3 col">
-                        <div class="sent_messages rounded p-1 col-4 offset-7">
-                            messaggio inviato
-                            <div class="time d-flex justify-content-end"> 12:00</div>
-                        </div>
-                        <div class="received_messages rounded p-1 col-4 offset-1">
-                            messaggio ricevuto
-                            <div class="time d-flex justify-content-end"> 12:00</div>
+                        <div v-for="(message, index) in activeContactMessages" :key="index">
+                            <div v-if="message.status === 'sent'" class="sent_messages rounded p-1 col-4 mb-1 offset-7">
+                                {{ message.message }}
+                                <div class="time d-flex justify-content-end">{{ message.date }}</div>
+                            </div>
+                            <div v-else-if="message.status === 'received'"
+                                class="received_messages rounded p-1 mb-1 col-4 offset-1">
+                                {{ message.message }}
+                                <div class="time d-flex justify-content-end">{{ message.date }}</div>
+                            </div>
                         </div>
                     </div>
 
@@ -131,8 +131,8 @@
                         </div>
                         <div class="col-10 d-flex justify-content-center">
                             <div class="message_box col-10">
-                                <input class="message p-2 rounded" type="text" placeholder="Scrivi un messaggio" name=""
-                                    id="">
+                                <input v-model="newMessage" @keyup.enter="sendMessage" class="message p-2 rounded"
+                                    type="text" placeholder="Scrivi un messaggio">
                             </div>
                         </div>
                         <div class="col-1 d-flex p-3 justify-content-end">

@@ -1,10 +1,9 @@
-
 const { createApp } = Vue;
 
 createApp({
     data() {
         return {
-            activeImage: 0,
+            activeContact: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -90,7 +89,8 @@ createApp({
                     ],
                 },
             ],
-            searchQuery: ''
+            searchQuery: '',
+            newMessage: ''
         }
     },
 
@@ -100,6 +100,35 @@ createApp({
             const lastMessage = contact.messages[contact.messages.length - 1];
             return lastMessage.message;
         },
+
+        selectContact(contact) {
+            this.activeContact = contact;
+        },
+
+        // DEBUG
+        sendMessage() {
+            if (this.newMessage.trim() === '') return;
+
+            // Aggiungi il messaggio inviato dall'utente
+            this.activeContact.messages.push({
+                date: new Date().toLocaleString(),
+                message: this.newMessage,
+                status: 'sent'
+            });
+
+            // Simula la risposta automatica dopo 1 secondo
+            setTimeout(() => {
+                this.activeContact.messages.push({
+                    date: new Date().toLocaleString(),
+                    message: 'Ok',
+                    status: 'received'
+                });
+            }, 1000);
+
+            this.newMessage = '';
+            // Pulisci l'input dopo l'invio del messaggio
+        }
+
     },
 
     // utilizzo del computed perchè ho trovato online che il computed è più rapido come richiesta anzichè methods 
@@ -108,10 +137,16 @@ createApp({
             return this.contacts.filter(contact =>
                 contact.name.toLowerCase().includes(this.searchQuery.toLowerCase())
             );
+        },
+
+        // DEBUG
+        activeContactMessages() {
+            if (!this.activeContact) return [];
+
+            return this.activeContact.messages;
         }
+
     }
 
 
 }).mount('#app')
-
-
