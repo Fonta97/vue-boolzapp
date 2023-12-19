@@ -17,111 +17,132 @@
 </head>
 
 <body>
-    <div id="wrapper">
+    <div id="app">
+        <div id="wrapper">
+            <!-- due div dello sfondo verde e grigio -->
+            <div class="topGreen"></div>
+            <div class="grey"></div>
 
-        <!-- due div dello sfondo verde e grigio -->
-        <div class="topGreen"></div>
-        <div class="grey"></div>
+            <!-- crezione container e macroaree left panel e right panel  -->
+            <div class="container row">
 
-        <!-- crezione container e macroaree left panel e right panel  -->
-        <div class="container row">
+                <!-- pannello di sinistra  -->
+                <div class="left_panel col-4">
 
-            <!-- pannello di sinistra  -->
-            <div class="left_panel col-4">
-
-                <!-- pannello profilo user -->
-                <div class="profile_panel d-flex justify-content-between align-items-center">
-                    <div class="user">
-                        <img class="m-2" src="img/avatar_1.jpg" alt="propic">
-                        <span>Fonta</span>
-                    </div>
-                    <div class="profile_icons p-2">
-                        <i class="fa-solid fa-circle-notch p-1" style="color: #a7a8aa;"></i>
-                        <i class="fa-solid fa-message p-1" style="color: #a7a8aa;"></i>
-                        <i class="fa-solid fa-ellipsis-vertical p-1" style="color: #a7a8aa;"></i>
-                    </div>
-                </div>
-
-                <!-- pannello attivazione notifiche desktop  -->
-                <div class="notification_panel p-3 d-flex align-items-center">
-                    <i class="bell_rounded p-2 m-1 fa-solid fa-bell-slash" style="color: #8edbfd;"></i>
-                    <span class="m-1">Ricevi notifiche di nuovi messaggi
-                        <br>
-                        <a href="#">Attiva notifiche desktop</a>
-                    </span>
-                </div>
-
-                <!-- sezione della searchbar -->
-
-                <div class="srcbar_panel d-flex justify-content-center bg-light">
-                    <nav class="navbar col p-2 navbar-light bg-light">
-                        <form class="d-flex col-10">
-                            <button class="btnsrc col-2" type="submit"><i class="fa-solid fa-magnifying-glass"
-                                    style="color: #a7a8aa;"></i></button>
-                            <input class="srcbar col-10 form-control" type="search"
-                                placeholder="Cerca o inizia nuova chat" aria-label="Search">
-                        </form>
-                    </nav>
-                </div>
-
-                <!-- contatti con v-for  -->
-
-                <div class="user_chat d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center col-10">
-                        <div class="col-2">
-                            <img class="m-2" src="img/avatar_2.jpg" alt="propic">
+                    <!-- pannello profilo user -->
+                    <div class="panel d-flex justify-content-between align-items-center">
+                        <div class="user">
+                            <img class="m-2" src="img/avatar_1.jpg" alt="propic">
+                            <span>Fonta</span>
                         </div>
-                        <span class="col m-2">
-                            nome contatto
-                            <div class="col">
-                                <div class="grey_text">ultimo messaggio</div>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="lastmsg_time p-2 col-2">
-                        12:00
-                    </div>
-                </div>
-            </div>
-
-            <!-- pannello di destra  -->
-            <div class="right_panel col-8">
-
-                <!-- pannello destinatario info -->
-                <div class="profile_panel d-flex justify-content-between align-items-center">
-                    <div class="user d-flex align-items-center col-3">
-                        <div class="col-3">
-                            <img class="m-2" src="img/avatar_2.jpg" alt="propic">
+                        <div class="profile_icons p-2">
+                            <i class="fa-solid fa-circle-notch p-1" style="color: #a7a8aa;"></i>
+                            <i class="fa-solid fa-message p-1" style="color: #a7a8aa;"></i>
+                            <i class="fa-solid fa-ellipsis-vertical p-1" style="color: #a7a8aa;"></i>
                         </div>
-                        <span class="col-6">
-                            nome contatto
-                            <div class="col">
-                                <div class="grey_text">last seen</div>
-                            </div>
+                    </div>
+
+                    <!-- pannello attivazione notifiche desktop  -->
+                    <div class="notification_panel p-3 d-flex align-items-center">
+                        <i class="bell_rounded p-2 m-1 fa-solid fa-bell-slash" style="color: #8edbfd;"></i>
+                        <span class="m-1">Ricevi notifiche di nuovi messaggi
+                            <br>
+                            <a href="#">Attiva notifiche desktop</a>
                         </span>
                     </div>
 
-                    <!-- icone azione destinario  -->
-                    <div class="profile_icons p-2">
-                        <i class="fa-solid fa-magnifying-glass p-1" style="color: #a7a8aa;"></i>
-                        <i class="fa-solid fa-paperclip p-1" style="color: #a7a8aa;"></i>
-                        <i class="fa-solid fa-ellipsis-vertical p-1" style="color: #a7a8aa;"></i>
+                    <!-- sezione della searchbar -->
+
+
+
+                    <div class="srcbar_panel d-flex justify-content-center bg-light">
+                        <nav class="navbar col p-2 navbar-light bg-light">
+                            <form class="d-flex col-10">
+                                <button class="btnsrc col-2" type="submit"><i class="fa-solid fa-magnifying-glass"
+                                        style="color: #a7a8aa;"></i></button>
+                                <input class="srcbar col-10 form-control" v-model="searchQuery" type="search"
+                                    placeholder="Cerca o inizia nuova chat" aria-label="Search">
+                            </form>
+                        </nav>
+                    </div>
+
+                    <!-- contatti con v-for  -->
+
+                    <div v-for="(contact,i) in filteredContacts" :key="i"
+                        class="user_chat d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center col-10">
+                            <div class="col-2">
+                                <img class="m-2" :src="contact.avatar" alt="propic">
+                            </div>
+                            <span class="col m-2">
+                                {{contact.name}}
+                                <div class="col">
+                                    <div class="grey_text">{{fetchLastMsg(contact)}}</div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="time col-1">
+                            12:00
+                        </div>
                     </div>
                 </div>
 
-                <!-- chatbox con messaggi  -->
-                <div class="chat_box p-3 col">
-                    <div class="sent_messages col-4 offset-7">
-                        messaggio inviato
+                <!-- pannello di destra  -->
+                <div class="right_panel col-8">
+
+                    <!-- pannello destinatario info -->
+                    <div class="panel d-flex justify-content-between align-items-center">
+                        <div class="user d-flex align-items-center col-3">
+                            <div class="col-3">
+                                <img class="m-2" src="img/avatar_2.jpg" alt="propic">
+                            </div>
+                            <span class="col-6">
+                                nome contatto
+                                <div class="col">
+                                    <div class="grey_text">last seen</div>
+                                </div>
+                            </span>
+                        </div>
+
+                        <!-- icone azione destinario  -->
+                        <div class="profile_icons p-2">
+                            <i class="fa-solid fa-magnifying-glass p-1" style="color: #a7a8aa;"></i>
+                            <i class="fa-solid fa-paperclip p-1" style="color: #a7a8aa;"></i>
+                            <i class="fa-solid fa-ellipsis-vertical p-1" style="color: #a7a8aa;"></i>
+                        </div>
                     </div>
-                    <div class="received_messages col-4 offset-1">
-                        messaggio ricevuto
+
+                    <!-- chatbox con messaggi  -->
+                    <div class="chat_box p-3 col">
+                        <div class="sent_messages rounded p-1 col-4 offset-7">
+                            messaggio inviato
+                            <div class="time d-flex justify-content-end"> 12:00</div>
+                        </div>
+                        <div class="received_messages rounded p-1 col-4 offset-1">
+                            messaggio ricevuto
+                            <div class="time d-flex justify-content-end"> 12:00</div>
+                        </div>
+                    </div>
+
+                    <!-- box input messaggi -->
+                    <div class="panel d-flex justify-content-between align-items-center">
+                        <div class="profile_icons p-3 col-1">
+                            <i class="fa-solid fa-smile p-1" style="color: #a7a8aa;"></i>
+                        </div>
+                        <div class="col-10 d-flex justify-content-center">
+                            <div class="message_box col-10">
+                                <input class="message p-2 rounded" type="text" placeholder="Scrivi un messaggio" name=""
+                                    id="">
+                            </div>
+                        </div>
+                        <div class="col-1 d-flex p-3 justify-content-end">
+                            <i class="fa-solid fa-microphone p-1" style="color: #a7a8aa;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Luxon -->
     <script src=" https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js "></script>

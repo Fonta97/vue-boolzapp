@@ -58,8 +58,8 @@ img {
     border-left: none;
 }
 
-.profile_panel {
-    height: 15%;
+.panel {
+    height: 10%;
     background-color: #eaeaea;
     width: 100%;
 }
@@ -114,7 +114,7 @@ a {
 }
 
 .chat_box {
-    height: 85%;
+    height: 80%;
     background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
     background-size: cover;
 }
@@ -125,5 +125,18 @@ a {
 
 .received_messages {
     background-color: white;
-    border-radius: 3%;
+}
+
+.message_box {
+    width: 100%;
+}
+
+.message {
+    width: 100%;
+    border: solid 1px lightgray;
+}
+
+.time {
+    color: lightgrey;
+    font-size: 10px;
 }
